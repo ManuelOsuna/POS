@@ -1,0 +1,176 @@
+
+/* Elimina los márgenes y el padding predeterminado de todos los elementos */
+style.css *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Hace que el ancho y alto incluyan el padding y el borde */
+    font-family: Arial, Helvetica, sans-serif; /* Fuente predeterminada */
+}
+
+/* Estilos para el body cuando tiene la clase 'fondo' */
+body.fondo {
+    background-color: #ffffff;
+    background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Hace que el body ocupe toda la altura de la ventana */
+    margin: 0; /* Elimina el margen predeterminado del body */
+}
+
+/* Estilos para el body cuando tiene la clase 'sistema' */
+body.sistema {
+    /*background-image: url(/images/bg.jpg); /* Imagen de fondo diferente */
+    background-color: #101826;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex; /* Usa flexbox para organizar los elementos internos */
+    flex-wrap: wrap; /* Permite que se adapte en pantallas pequeñas */
+    height: 700px;
+    width: 1000px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Sombra para dar efecto de elevación */
+    margin: auto; /* Centra el contenedor en la pantalla */
+    margin-top: 70px; /* Espacio superior */
+}
+
+/* Estilos para el logo dentro del contenedor */
+.logo {
+    background-image: url(/images/LOGO.png); /* Imagen de logo */
+    background-color: #ffffff; /* Color de fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat;
+    background-size: 40%; /* Ajusta el tamaño de la imagen */
+    text-align: center; /* Alinea el contenido al centro */
+    padding: 150px 50px; /* Espaciado interno */
+    width: 50%; /* Ocupa la mitad del contenedor */
+}
+
+/* Texto principal del logo */
+.txt-1 {
+    color: #fff; /* Texto blanco */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    font-size: 50px; /* Tamaño del texto */
+    margin-bottom: 10px; /* Espaciado inferior */
+}
+
+/* Estilos para el formulario */
+.formulario {
+    padding: 100px 50px; /* Espaciado interno */
+    width: 50%; /* Ocupa la otra mitad del contenedor */
+    text-align: center; /* Centra el contenido */
+    background-color: #fff; /* Fondo blanco */
+}
+
+/* Estilos para el título del formulario */
+.formulario h3 {
+    color: #040a1f; /* Color del texto */
+    font-size: 30px; /* Tamaño del texto */
+    margin-bottom: 25px; /* Espaciado inferior */
+}
+
+/* Estilos para los párrafos dentro del formulario */
+.formulario p {
+    font-size: 16px;
+    color: #c4c3c3; /* Color de texto gris */
+    margin-bottom: 25px; /* Espaciado inferior */
+}
+
+/* Contenedor para los campos de entrada */
+.acceso {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en columna */
+}
+
+/* Estilos para los campos de entrada */
+.box {
+    outline: none; /* Elimina el contorno al hacer clic */
+    border-color: #040a1f; /* Color del borde */
+    border-width: 0px 0px 5px; /* Solo se muestra el borde inferior */
+    border-style: solid; /* Tipo de borde */
+    padding: 15px 35px; /* Espaciado interno */
+    margin-bottom: 20px; /* Espaciado inferior */
+    background-color: #f9f9f9; /* Color de fondo gris claro */
+}
+
+/* Alineación de etiquetas dentro del formulario */
+.acceso label {
+    text-align: left;
+}
+
+/* Estilos para los enlaces dentro del formulario */
+.acceso a {
+    color: #097EF6; /* Color azul */
+    text-decoration: none; /* Quita el subrayado */
+    font-size: 15px; /* Tamaño del texto */
+    margin-bottom: 35px; /* Espaciado inferior */
+}
+
+/* Estilos para el botón de enviar */
+.submit {
+    background-color: #040a1f; /* Color de fondo oscuro */
+    padding: 15px; /* Espaciado interno */
+    border: 0; /* Sin borde */
+    color: #fff; /* Texto blanco */
+    font-size: 18px; /* Tamaño del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    border-radius: 25px; /* Bordes redondeados */
+}
+
+/* Cambio de color al pasar el mouse sobre el botón */
+.submit:hover {
+    background-color: #76194f; /* Color morado oscuro */
+}
+.encabezado-tabla {
+    background-color: #12944e; /* Verde bosque */
+    color: white;
+  }
+  
+
+/* ============================
+   Media query para pantallas < 990px
+   ============================ */
+   @media (max-width: 990px) {
+    .container {
+        flex-direction: column; /* Apilar elementos */
+        height: auto;
+        margin-top: 40px;
+        padding: 0 15px;
+    }
+
+    .logo {
+        width: 100%;
+        padding: 100px 30px;
+        display: block; /* O usa display: none; si quieres ocultarlo */
+    }
+
+    .formulario {
+        width: 100%;
+        padding: 40px 20px;
+    }
+
+    .formulario h3 {
+        margin-top: 20px;
+        font-size: 24px;
+    }
+
+    .box {
+        padding: 12px 20px;
+    }
+
+    .submit {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+.navbar .nav-link {
+    color: white !important;
+}
+.navbar .nav-link:hover {
+    color: #e0e0e0 !important;
+}

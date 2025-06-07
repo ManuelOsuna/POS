@@ -1,0 +1,67 @@
+<%- layout('layouts/sistema.ejs') %>
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Clientes</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Lista de clientes</li>
+            </ol>
+            <div class="card mb-4">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      <table id="tabla-productos" class="table table-striped table-hover align-middle">
+                        <thead class="encabezado-tabla text-center">
+                          <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>email</th>
+                            <th>telefono</th>
+                            <th>Direccion</th>
+                            <th>Registro</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% clientes.forEach((p, i) => { %>
+                            <tr>
+                              <td><%= i + 1 %></td>
+                              <td><%= p.nombre %></td>
+                              <td><%= p.email %></td>
+                              <td><%= p.telefono %></td>
+                              <td><%= p.direccion %></td>
+                                   <!-- Mostrar el la feha con formato en español -->
+                            <td><%= new Date(p.fecha_registro).toLocaleString('es-MX', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                hour: 'numeric',
+                                minute: '2-digit',
+                                hour12: true
+                              }) %>
+                              </td>
+                              <td><%= p.activo %></td>
+                              
+                       
+                              <td class="text-center">
+                                <div class="btn-group btn-group-sm" role="group">
+                                  <a href="/clientes/editar/<%= p._id %>" class="btn btn-outline-dark" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                  </a>
+                                  <form action="/cliente/eliminar/<%= p._id %>" method="POST" onsubmit="return confirm('¿Eliminar este cliente?');">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" title="Eliminar">
+                                      <i class="fas fa-trash"></i>
+                                    </button>
+                                  </form>
+                                </div>
+                              </td>
+                            </tr>
+                          <% }) %>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+  

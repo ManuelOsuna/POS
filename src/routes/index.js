@@ -39,13 +39,26 @@ router.get('/productos', async (req, res) => {
   // Ruta para la página de ventas encontradas
 router.get('/ventas', async (req, res) => {
     try {
-      const ventas = await Venta.find().populate('user_id', 'name');
+      const ventas = await Venta.find().populate('clientes_id', 'name');
       res.render('ventas', { ventas });
     } catch (error) {
       console.error(error);
       res.status(500).send('Error al obtener ventas');
     }
   });
+
+    // Ruta para la página de clientes encontrados
+    router.get('/clientes', async (req, res) => {
+      try {
+        const clientes = await Cliente.find({ activo: true });
+       
+    
+        res.render('clientes', { clientes });
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al obtener clientes');
+      }
+    });
   
 // Ruta para mostrar el formulario de registro (signup)
 router.get('/signup', (req, res, next) => {
@@ -150,7 +163,7 @@ router.post('/productos', async (req, res) => {
       const nuevoProducto = new Producto({
         nombre: req.body.nombre,
         marca: req.body.marca,
-        modelo: req.body.modelo,
+        codigo: req.body.codigo,
         precio: req.body.precio,
         stock: req.body.stock,
         categoria: req.body.categoria,

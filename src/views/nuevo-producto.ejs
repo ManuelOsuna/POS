@@ -1,0 +1,86 @@
+<%- layout('layouts/sistema.ejs') %>
+<div id="layoutSidenav_content">
+<main>
+  <div class="container mt-9">
+    <div class="container-fluid px-4">
+      <h1 class="mt-4">Alta de Productos</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Favor de verificar los datos antes de ingresarlos al sistema</li>
+      </ol>
+
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-plus me-1"></i>
+          Agregar nuevo producto
+        </div>
+        <div class="card-body">
+          <form action="/productos" method="POST">
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="fecha_alta" class="form-label">Fecha de Alta</label>
+                <input type="date" class="form-control" id="fecha_alta" name="fecha_alta" readonly>
+              </div>
+              <div class="col-md-4">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+              </div>
+              <div class="col-md-4">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control" id="marca" name="marca" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="number" class="form-control" id="stock" name="stock" required>
+              </div>
+              <div class="col-md-4">
+                <label for="codigo" class="form-label">Codigo</label>
+                <input type="text" class="form-control" id="codigo" name="modelo" required>
+              </div>
+              <div class="col-md-4">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" step="0.01" class="form-control" id="precio" name="precio" required>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <label for="categoria" class="form-label">Categoría</label>
+                  <input type="text" class="form-control" id="categoria" name="categoria" required>
+                </div>
+                <div class="col-md-4">
+                  <label for="activo" class="form-label">Disponible</label>
+                  <select id="activo" name="activo" class="form-control" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="true">Sí</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="imagen" class="form-label">Imagen</label>
+                  <input type="text" class="form-control" id="imagen" name="imagen" placeholder="URL">
+                </div>
+              </div>
+              <div class="col">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Registrar</button>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+  <script>
+    // Establecer la fecha de hoy automáticamente
+    const hoy = new Date();
+    const yyyy = hoy.getFullYear();
+    const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+    const dd = String(hoy.getDate()).padStart(2, '0');
+    document.getElementById('fecha_alta').value = `${yyyy}-${mm}-${dd}`;
+    </script>

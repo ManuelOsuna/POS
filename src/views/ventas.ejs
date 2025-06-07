@@ -1,0 +1,90 @@
+<%- layout('layouts/sistema.ejs') %>
+<div id="layoutSidenav_content">
+  <main>
+      <div class="container-fluid px-4">
+          <h1 class="mt-4">Ventas</h1>
+          <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item active">Lista de ventas</li>
+          </ol>
+          <div class="card mb-4">
+              <div class="card-body">
+                <div class="table-responsive">
+                <table id="tabla-productos" class="table table-striped table-hover align-middle">
+                  <thead class="encabezado-tabla text-center">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha de Venta</th>
+                        <th>Cliente</th>
+                        <th>Productos</th>
+                        <th>Total</th>
+                        <th>Metodo de Pago</th>
+                        <th>Estado</th>
+                        <th>Observaciones</th>
+                        <th>Vendedor</th>
+                        <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>#</th>
+                      <th>Fecha de Venta</th>
+                      <th>Cliente</th>
+                      <th>Productos</th>
+                      <th>Total</th>
+                      <th>Metodo de Pago</th>
+                      <th>Estado</th>
+                      <th>Observaciones</th>
+                      <th>Vendedor</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <% ventas.forEach((venta, i) => { %>
+                        <tr>
+                          <td><%= i + 1 %></td>
+                          <!-- Mostrar el la feha con formato en español -->
+                          <td><%= new Date(venta.fecha).toLocaleString('es-MX', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            hour12: true
+                          }) %>
+                        </td>
+                          <!-- Mostrar el nombre del cliente -->
+                          <td><%= venta.cliente.nombre %></td>
+                          <!-- Mostrar los productos (recorriendo el array de productos) -->
+                          <td>
+                            <!--
+                            <% venta.productos.forEach((producto) => { %>
+                               <p><%= producto.nombre %> (Cantidad: <%= producto.cantidad %>, Subtotal: $<%= producto.subtotal %>)</p>
+                            <% }) %> -->
+                                <%= venta.productos.map(p => p.nombre).join(', ') %>
+                              
+                          </td>
+                          <td>$<%= venta.total %></td>
+                          <td><%= venta.metodo_pago %></td>
+                          <td><%= venta.estado %></td>
+                          <td><%= venta.observaciones %></td>
+                          <td><%= venta.user_id.name %></td>
+                          <td class="text-center">
+                            <div class="btn-group btn-group-sm" role="group">
+                              <a href="/Ventas/<%= venta._id %>" class="btn btn-outline-dark" title="Editar">
+                                <i class="fas fa-edit"></i>
+                              </a>
+                              <form action="/ventas/<%= venta._id %>" method="POST" onsubmit="return confirm('¿Eliminar esta venta?');">
+                                <button type="submit" class="btn btn-outline-danger btn-sm" title="Eliminar">
+                                  <i class="fas fa-trash"></i>
+                                </button>
+                              </form>
+                            </div>
+                          </td>
+                        </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+  </main>
