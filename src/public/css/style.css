@@ -41,7 +41,7 @@ body.sistema {
 
 /* Estilos para el logo dentro del contenedor */
 .logo {
-    background-image: url(/images/LOGO.png); /* Imagen de logo */
+    background-image: url(/images/logo.png); /* Imagen de logo */
     background-color: #ffffff; /* Color de fondo */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat;
