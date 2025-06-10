@@ -59,13 +59,39 @@ router.get('/ventas', async (req, res) => {
         res.status(500).send('Error al obtener clientes');
       }
     });
+// ruta para editar cliente
+router.post('/clientes/editar/:id', async (req, res) => {
+  try {
+    await Cliente.findByIdAndUpdate(req.params.id, {
+      nombre: req.body.nombre,
+      email: req.body.email,
+      telefono: req.body.telefono,
+      direccion: req.body.direccion,
+      activo: req.body.activo === 'true'
+    });
+    res.redirect('/clientes');
+  } catch (error) {
+    console.error('Error al editar cliente:', error);
+    res.status(500).send('Error al editar cliente');
+  }
+});
+
+// Ruta para eliminar cliente
+router.post('/clientes/eliminar/:id', async (req, res) => {
+  try {
+    await Cliente.findByIdAndDelete(req.params.id);
+    res.redirect('/clientes');
+  } catch (error) {
+    console.error('Error al eliminar cliente:', error);
+    res.status(500).send('Error al eliminar cliente');
+  }
+});
   
 // Ruta para mostrar el formulario de registro (signup)
 router.get('/signup', (req, res, next) => {
     res.render('signup'); // Renderiza la vista 'signup.ejs'
 });
 
-//
 
 // Ruta para procesar el formulario de registro
 router.post('/signup', passport.authenticate('local-signup', {
@@ -181,6 +207,31 @@ router.post('/productos', async (req, res) => {
     }
   });
 
+// Mostrar formulario de agregar cliente
+router.get('/nuevo-cliente', (req, res) => {
+  res.render('nuevo-cliente');
+});
+
+// Procesar formulario de agregar cliente
+router.post('/clientes', async (req, res) => {
+  try {
+    const nuevoCliente = new Cliente({
+      nombre: req.body.nombre,
+      email: req.body.email,
+      telefono: req.body.telefono,
+      direccion: req.body.direccion,
+      fecha_registro: new Date(),
+      activo: req.body.activo === 'true'
+    });
+
+    await nuevoCliente.save();
+    res.redirect('/clientes');
+  } catch (error) {
+    console.error('Error al guardar cliente:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+});
+
   
 // Mostrar formulario de agregar venta
 router.get('/nueva-venta', async (req, res) => {
@@ -201,6 +252,7 @@ router.get('/nueva-venta', async (req, res) => {
       res.status(500).send('Error al cargar los datos');
     }
   });
+
 
 
 // Guardar nueva venta con validación de stock

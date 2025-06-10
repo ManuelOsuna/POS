@@ -14,8 +14,8 @@
                           <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>email</th>
-                            <th>telefono</th>
+                            <th>Email</th>
+                            <th>Telefono</th>
                             <th>Direccion</th>
                             <th>Registro</th>
                             <th>Estado</th>
@@ -41,14 +41,14 @@
                               }) %>
                               </td>
                               <td><%= p.activo %></td>
-                              
-                       
                               <td class="text-center">
                                 <div class="btn-group btn-group-sm" role="group">
-                                  <a href="/clientes/editar/<%= p._id %>" class="btn btn-outline-dark" title="Editar">
+                                  <button type="button" class="btn btn-outline-dark" title="Editar"
+                                    onclick='abrirModalEditar(<%- JSON.stringify(p) %>)'>
                                     <i class="fas fa-edit"></i>
-                                  </a>
-                                  <form action="/cliente/eliminar/<%= p._id %>" method="POST" onsubmit="return confirm('¿Eliminar este cliente?');">
+                                  </button>
+                              
+                                  <form action="/clientes/eliminar/<%= p._id %>" method="POST" onsubmit="return confirm('¿Eliminar este cliente?');">
                                     <button type="submit" class="btn btn-outline-danger btn-sm" title="Eliminar">
                                       <i class="fas fa-trash"></i>
                                     </button>
@@ -64,4 +64,47 @@
             </div>
         </div>
     </main>
-  
+<!-- Modal para editar cliente -->
+<div class="modal fade" id="modalEditarCliente" tabindex="-1" aria-labelledby="editarClienteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="formEditarCliente" method="POST">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editarClienteLabel">Editar Cliente</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="_id" id="clienteIdEditar">
+            <div class="mb-3">
+              <label>Nombre</label>
+              <input type="text" class="form-control" name="nombre" id="nombreEditar">
+            </div>
+            <div class="mb-3">
+              <label>Email</label>
+              <input type="email" class="form-control" name="email" id="emailEditar">
+            </div>
+            <div class="mb-3">
+              <label>Teléfono</label>
+              <input type="text" class="form-control" name="telefono" id="telefonoEditar">
+            </div>
+            <div class="mb-3">
+              <label>Dirección</label>
+              <input type="text" class="form-control" name="direccion" id="direccionEditar">
+            </div>
+            <div class="mb-3">
+              <label>Activo</label>
+              <select class="form-select" name="activo" id="activoEditar">
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Guardar cambios</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<script src="/js/script-editar-cliente.js"></script>

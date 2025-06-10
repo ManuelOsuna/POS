@@ -1,0 +1,65 @@
+<%- layout('layouts/sistema.ejs') %>
+<div id="layoutSidenav_content">
+<main>
+  <div class="container mt-9">
+    <div class="container-fluid px-4">
+      <h1 class="mt-4">Alta de Clientes</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Favor de verificar los datos antes de ingresarlos al sistema</li>
+      </ol>
+
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-plus me-1"></i>
+          Agregar nuevo cliente
+        </div>
+        <div class="card-body">
+          <form action="/clientes" method="POST">
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="fecha_registro" class="form-label">Fecha de Registro</label>
+                <input type="date" class="form-control" id="fecha_registro" name="fecha_registro" readonly>
+              </div>
+              <div class="col-md-4">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+              </div>
+              <div class="col-md-4">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" required>
+              </div>
+              <div class="col-md-4">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" required>
+              </div>
+              <div class="col-md-4">
+                <label for="activo" class="form-label">Estado</label>
+                <select id="activo" name="activo" class="form-control" required>
+                  <option value="">Seleccione una opción</option>
+                  <option value="true">Activo</option>
+                  <option value="false">Inactivo</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Registrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Establecer la fecha de hoy automáticamente
+  const hoy = new Date();
+  const yyyy = hoy.getFullYear();
+  const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+  const dd = String(hoy.getDate()).padStart(2, '0');
+  document.getElementById('fecha_registro').value = `${yyyy}-${mm}-${dd}`;
+</script>
